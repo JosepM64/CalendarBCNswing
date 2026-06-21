@@ -1,4 +1,4 @@
-package org.bcnswing.bcn_swing_events
+package org.bcnswing.bcn_swing_events_temp
 
 import io.flutter.embedding.android.FlutterActivity
 
