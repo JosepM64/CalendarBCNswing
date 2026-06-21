@@ -1,0 +1,24 @@
+workflows:
+  default-workflow:
+    name: Default Workflow
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Install dependencies
+        script: flutter pub get
+      - name: Android build
+        script: flutter build apk --debug
+      - name: iOS build
+        script: |
+          flutter build ios --debug --no-codesign
+          cd ios && xcodebuild -workspace Runner.xcworkspace -scheme Runner -sdk iphoneos -configuration Debug build
+    artifacts:
+      - build/**/outputs/**/*.apk
+      - build/ios/iphoneos/Runner.app
+    publishing:
+      email:
+        recipients:
+          - josepmtapia@gmail.com
